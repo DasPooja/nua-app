@@ -1,4 +1,5 @@
 import type { Product } from '../../types/product';
+import { RiShoppingCartLine } from "react-icons/ri";
 import styles from "./ProductCard.module.scss";
 
 type ProductCardProps = {
@@ -12,19 +13,22 @@ const ProductCard = ({ product }: ProductCardProps) => {
             <img
                 src={product.image}
                 alt={product.title}
+                loading="lazy"
                 className={styles.image}
             />
         </div>
-        <h3 className={styles.title}>{product.title}</h3>
+        <div className={styles.content}>
+            <h3 className={styles.title}>{product.title}</h3>
 
-        <p className={styles.price}>${product.price}</p>
+            <p className={styles.price}>${product.price}</p>
 
-        <button 
-            type="button"
-            className={styles.button}
-        >
-            Quick Add
-        </button>
+            <button 
+                type="button"
+                className={styles.button}
+            >
+                ADD TO CART
+            </button>
+        </div>
     </article>
   );
 };

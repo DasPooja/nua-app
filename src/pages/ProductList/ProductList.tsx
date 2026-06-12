@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { getProducts } from "../../api/products";
 import type { Product } from "../../types/product";
+import Navbar from "../../components/Navbar/Navbar";
 import ProductCard from "../../components/ProductCard/ProductCard";
-import styles from "./ProductList.module.scss"
+import styles from "./ProductList.module.scss";
+
 const ProductList = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
@@ -32,18 +34,24 @@ const ProductList = () => {
     }
 
     return (
-        <div className={styles.page}>
-            <h1 className={styles.heading}>Products</h1>
-            
-            <div className={styles.productGrid}>
-                {products.map(product => (
-                    <ProductCard
-                        key={product.id}
-                        product={product}
-                    />
-                ))}
+        <>
+            <Navbar />
+            <div className={styles.page}>
+                <header className={styles.hero}>
+                    <p className={styles.subHeading}>New Summer arrivals</p>
+                    <h1 className={styles.heading}>Shop the Collection</h1>
+                    <p className={styles.sub}>{products.length > 0 ? `${products.length} products` : '\u00A0'}</p>
+                </header>
+                <div className={styles.productGrid}>
+                    {products.map(product => (
+                        <ProductCard
+                            key={product.id}
+                            product={product}
+                        />
+                    ))}
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

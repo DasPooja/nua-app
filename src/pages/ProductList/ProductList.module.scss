@@ -1,11 +1,41 @@
 .page {
-  padding: 24px;
+  padding: 30px;
+}
+
+
+.hero {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+.subHeading {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #c8502a;
 }
 
 .heading {
-  margin-bottom: 24px;
-  font-size: 2rem;
-  font-weight: 600;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0;
+
+  @media (max-width: 767px) {
+    font-size: 2rem;
+  }
+}
+
+.sub {
+  font-size: 14px;
+  color: #a09890;
+  min-height: 1.4em;
 }
 
 .productGrid {
