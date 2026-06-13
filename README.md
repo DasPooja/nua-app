@@ -30,7 +30,7 @@ A mini e-commerce application built with React, TypeScript, Vite, SCSS Modules, 
 
 Clone the repository:
 
-git clone <repository-url>
+git clone https://github.com/DasPooja/nua-app.git
 
 Install dependencies:
 
@@ -85,7 +85,7 @@ The following state is persisted in localStorage:
 
 Vercel URL:
 
-[Add deployed URL here]
+https://nua-app-delta.vercel.app/
 
 ## Lighthouse
 
