@@ -89,6 +89,8 @@ https://nua-app-delta.vercel.app/
 
 ## Lighthouse
 
-Lighthouse screenshot can be found in the /docs folder.
+Lighthouse report screenshot can be found in the docs folder.
+
+File: docs/lighthouse-report.png
 
 ```
