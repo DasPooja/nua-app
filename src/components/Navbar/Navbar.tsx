@@ -1,8 +1,20 @@
-import styles from './Navbar.module.scss';
+import { useCart } from "../../hooks/useCart";
 import { RiShoppingCartLine } from "react-icons/ri";
+import { useUI } from "../../context/UIContext";
+import styles from './Navbar.module.scss';
+
+// type NavbarProps = {
+//   onCartClick: () => void;
+// };
 
 const Navbar = () => {
-    const cartCount = 0;
+  const { openCart } = useUI();
+  const { cartItems } = useCart();
+  
+  const cartCount = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
 
   return (
     <header className={styles.navbar}>
@@ -13,6 +25,7 @@ const Navbar = () => {
       <button
         type="button"
         className={styles.cartButton}
+        onClick={openCart}
       >
         <RiShoppingCartLine color='white' />
         {cartCount > 0 && (

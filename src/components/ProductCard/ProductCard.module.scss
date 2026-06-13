@@ -66,7 +66,7 @@
   padding: 12px;
   border: none;
   border-radius: 20px;
-  background: #111827;
+  background: #e75650;
   color: white;
   font-weight: 600;
   cursor: pointer;
@@ -74,4 +74,17 @@
 
 .button:hover {
   opacity: 0.9;
+}
+
+.imageLink {
+  text-decoration: none;
+}
+
+.titleLink {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover .title {
+    color: #e75650
+  }
 }

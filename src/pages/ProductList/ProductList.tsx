@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { getProducts } from "../../api/products";
 import type { Product } from "../../types/product";
-import Navbar from "../../components/Navbar/Navbar";
+import { useCart } from "../../hooks/useCart";
+import { useUI } from "../../context/UIContext";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import styles from "./ProductList.module.scss";
 
@@ -9,6 +10,8 @@ const ProductList = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+
+    const { openCart } = useUI();
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -25,6 +28,22 @@ const ProductList = () => {
         fetchProducts();
     }, []);
 
+    const { addToCart } = useCart();
+
+    const handleAddToCart = (product: Product) => {
+        addToCart({
+            productId: product.id,
+            title: product.title,
+            image: product.image,
+            price: product.price,
+            quantity: 1,
+            color: "black",
+            size: "M",
+        });
+
+        openCart();
+    };
+
     if (loading) {
         return <p>Loading products...</p>;
     }
@@ -35,7 +54,6 @@ const ProductList = () => {
 
     return (
         <>
-            <Navbar />
             <div className={styles.page}>
                 <header className={styles.hero}>
                     <p className={styles.subHeading}>New Summer arrivals</p>
@@ -47,6 +65,7 @@ const ProductList = () => {
                         <ProductCard
                             key={product.id}
                             product={product}
+                            onAddToCart={handleAddToCart}
                         />
                     ))}
                 </div>

@@ -1,73 +1,94 @@
-# React + TypeScript + Vite
+# NUA Frontend Assignment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A mini e-commerce application built with React, TypeScript, Vite, SCSS Modules, React Router, Context API, and localStorage persistence.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* Product listing page using Fake Store API
+* Responsive product grid layout
+* Product detail page with image gallery
+* Product variants (Color and Size selection)
+* Stock states (In Stock, Low Stock, Sold Out)
+* Deep-linkable variant selection using URL query parameters
+* Shopping cart drawer
+* Quantity management
+* Cart badge with item count
+* Cart persistence using localStorage
+* Responsive mobile and desktop layouts
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* React 19
+* TypeScript
+* Vite
+* React Router
+* Context API
+* SCSS Modules
+* Fake Store API
 
-## Expanding the ESLint configuration
+## Setup
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Clone the repository:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+git clone <repository-url>
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Install dependencies:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+npm install
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Start the development server:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+npm run dev
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Create a production build:
+
+npm run build
+
+Preview production build:
+
+npm run preview
+
+## Folder Structure
+
+src/
+├── api/
+├── components/
+├── context/
+├── data/
+├── hooks/
+├── pages/
+├── router/
+├── styles/
+└── types/
+
+## Design Decisions
+
+* Context API was used for cart state and shared UI state because the application does not have a large enough state surface area to justify Redux or another external state management library.
+* Product variants were implemented using a local data layer because Fake Store API does not provide color, size, or stock information.
+* Variant selections are synchronized with URL query parameters to support deep linking and page refresh persistence.
+
+## Known Trade-offs
+
+* Fake Store API provides only a single product image, therefore the gallery thumbnails reuse the available product image.
+* Product variant data is mocked locally and would ideally come from a dedicated variants API in a production application.
+* Checkout flow is represented as UI only and is not connected to a backend service.
+
+## Local Storage
+
+The following state is persisted in localStorage:
+
+* Cart items
+* Cart quantities
+* Selected product variants added to cart
+
+## Live Demo
+
+Vercel URL:
+
+[Add deployed URL here]
+
+## Lighthouse
+
+Lighthouse screenshot can be found in the /docs folder.
+
 ```
